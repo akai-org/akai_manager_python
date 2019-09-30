@@ -68,6 +68,9 @@ TEMPLATES = [
         },
     },
 ]
+TEMPLATE_DIRS = {
+    os.path.join(BASE_DIR, 'meetings/templates/templates/../meetings/templates/akai_manager_python/'),
+}
 
 WSGI_APPLICATION = 'akai_manager_python.wsgi.application'
 
