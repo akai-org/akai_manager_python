@@ -21,5 +21,5 @@ from meetings import views as meeting_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('meetings/create', meeting_views.create, name="meeting_create"),
-    path('meetings/<int:id>/', meeting_views.MeetingDetailView, name="meeting_view"),
+    path('meetings/<int:pk>/', meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
 ]

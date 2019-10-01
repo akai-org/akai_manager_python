@@ -13,9 +13,10 @@ def create(request):
 
         if form.is_valid():
             meeting = form.save()
-            time = form.cleaned_data.get('datetime')
-            messages.success(request, f'Spotkanie {time} zostało utworzone pomyślnie!')
-            return redirect('meeting_view', id=meeting.pk)
+            date = form.cleaned_data.get('date')
+            time = form.cleaned_data.get('time')
+            messages.success(request, f'Spotkanie {date} o godzinie {time} zostało utworzone pomyślnie!')
+            return redirect('meeting_view', pk=meeting.pk)
     else:
         form = MeetingCreateForm()
     return render(request, 'meetings/meeting_create.html', {'form': form})
