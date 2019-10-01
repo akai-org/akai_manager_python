@@ -5,9 +5,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{% static "index.css" %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-
+<body class="d-flex flex-column">
+    {% include 'akai_manager_python/includes/navbar.html' %}
+    <div class="base-content">
+        {% block content %}{% endblock %}
+    </div>
     <script src="{% static "index.js" %}"></script>
+    {% include 'akai_manager_python/includes/footer.html' %}
 </body>
 </html>

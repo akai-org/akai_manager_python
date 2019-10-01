@@ -4,8 +4,8 @@ from members.models import Member
 
 class Meeting(models.Model):
     datetime = models.DateTimeField()
-    agenda = models.TextField()
-    notes = models.TextField()
+    agenda = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
     members = models.ManyToManyField(Member)
     is_active = models.BooleanField(default=False)
 
