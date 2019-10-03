@@ -1,1 +1,4 @@
 {% extends 'akai_manager_python/base.html' %}
+{% block content %}
+    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary">Zaloguj się!</a>
+{% endblock %}

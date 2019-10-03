@@ -1,5 +1,5 @@
 from django.db import models
-from members.models import Member
+from django.contrib.auth.models import User
 
 
 class Meeting(models.Model):
@@ -7,7 +7,7 @@ class Meeting(models.Model):
     time = models.TimeField()
     agenda = models.TextField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
-    members = models.ManyToManyField(Member)
+    members = models.ManyToManyField(User)
     is_active = models.BooleanField(default=False)
 
     def __str__(self):

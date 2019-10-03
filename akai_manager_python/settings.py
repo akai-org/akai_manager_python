@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'meetings.apps.MeetingsConfig',
     'members.apps.MembersConfig',
     'crispy_forms',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,20 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '449789827359-scpla86ifb36rnch0enp3l9vvbue2qf9.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '4xJPfMB4tZFJLW5n7GJBhJ57'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+LOGIN_URL = '/auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URI = '/'
+LOGOUT_REDIRECT_URI = '/'
 
 ROOT_URLCONF = 'akai_manager_python.urls'
 
