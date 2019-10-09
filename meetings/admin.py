@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Meeting
+from .models import Meeting, Attendance
 
 
 class MeetingAdmin(admin.ModelAdmin):
@@ -7,3 +7,4 @@ class MeetingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Meeting, MeetingAdmin)
+admin.site.register(Attendance)
