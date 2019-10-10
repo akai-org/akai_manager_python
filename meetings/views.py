@@ -25,7 +25,7 @@ def create(request):
 def register(request, **kwargs):
     if Meeting.objects.filter(is_active=True, **kwargs).exists():
         obj = Meeting.objects.get(**kwargs)
-        form = MeetingsRegisterForm(request.POST, initial=kwargs)
+        form = MeetingsRegisterForm(request.POST or None, initial=kwargs)
 
         if form.is_valid():
             messages.success(request, f'Spotkanie {obj.date} o godzinie {obj.time} zanotowało obecność {request.user}!')
