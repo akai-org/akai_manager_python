@@ -23,16 +23,15 @@ def create(request):
 
 
 def register(request, **kwargs):
-    if not Meeting.objects.filter(**kwargs):
-        kwargs = {}
-    form = MeetingsRegisterForm(None, initial=kwargs)
+    if Meeting.objects.filter(is_active=True, **kwargs).exists():
+        obj = Meeting.objects.get(**kwargs)
+        form = MeetingsRegisterForm(request.POST, initial=kwargs)
 
-    if request.method == 'POST':
         if form.is_valid():
-            obj = Meeting.objects.get(**kwargs)
             messages.success(request, f'Spotkanie {obj.date} o godzinie {obj.time} zanotowało obecność {request.user}!')
             return redirect('meeting_view', pk=obj.pk)
-
+    else:
+        form = MeetingsRegisterForm()
     return render(request, 'meetings/meeting_register.html', {'form': form})
 
 

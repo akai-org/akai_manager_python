@@ -20,5 +20,5 @@ class MeetingsRegisterForm(forms.ModelForm):
     code = forms.CharField(max_length=32, label='Kod')
 
     class Meta:
-        model = Meeting
+        model = Attendance
         fields = ['code']
