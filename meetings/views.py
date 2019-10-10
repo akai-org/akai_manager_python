@@ -24,17 +24,19 @@ def create(request):
 
 def register(request, **kwargs):
     if Meeting.objects.filter(is_active=True, **kwargs).exists():
-        meeting = Meeting.objects.get(**kwargs)
         form = MeetingsRegisterForm(request.POST or None, initial=kwargs)
 
         if form.is_valid():
+            meeting = Meeting.objects.get(is_active=True, **kwargs)
             if not Attendance.objects.filter(user=request.user, meeting=meeting).exists():
                 attendance = form.save(commit=False)
                 attendance.user = request.user
                 attendance.meeting = meeting
                 attendance.save()
                 messages.success(request, f'Spotkanie {meeting.date} o godzinie {meeting.time} zanotowało obecność {request.user}!')
-            return redirect('meeting_view', pk=meeting.pk)
+                return redirect('meeting_view', pk=meeting.pk)
+            else:
+                return redirect('meeting_view', pk=meeting.pk)
     else:
         form = MeetingsRegisterForm()
     return render(request, 'meetings/meeting_register.html', {'form': form})
