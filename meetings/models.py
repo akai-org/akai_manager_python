@@ -26,8 +26,3 @@ class Attendance(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, models.CASCADE)
     meeting = models.ForeignKey(Meeting, models.CASCADE)
-
-    def save(self, request, *args, **kwargs):
-        self.user = User.objects.get(userame=request.user.username)
-        self.meeting = Meeting.objects.get(pk=kwargs['pk'])
-        super().save(*args, **kwargs)

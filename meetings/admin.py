@@ -7,7 +7,9 @@ class MeetingAdmin(admin.ModelAdmin):
 
 
 class AttendanceAdmin(admin.ModelAdmin):
-    pass
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
 
 
 admin.site.register(Meeting, MeetingAdmin)
