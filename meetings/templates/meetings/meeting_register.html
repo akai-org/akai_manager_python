@@ -1,1 +1,19 @@
 {% extends 'akai_manager_python/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom form-title pt-3">Nowe wydarzenie</legend>
+            <div class="row">
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.code|as_crispy_field }}
+                </div>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">
+                Podpisz listę obecności
+            </button>
+        </div>
+    </form>
+{% endblock %}
