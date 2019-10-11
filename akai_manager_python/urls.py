@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('meetings/create', meeting_views.create, name="meeting_create"),
     path('meetings/<int:pk>/', meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
-    path('meetings/register/<str:code>/', meeting_views.register, name="meeting_register_code"),
+    path('meetings/register/<str:code>/', meeting_views.register),
     path('meetings/register/', meeting_views.register, name="meeting_register"),
     path('', member_views.login, name="login"),
     path('', include('social_django.urls', namespace="social")),

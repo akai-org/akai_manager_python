@@ -17,6 +17,11 @@ class MeetingCreateForm(forms.ModelForm):
 
 
 class MeetingsRegisterForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'code' in kwargs:
+            self.fields['code'] = kwargs['code']
+
     code = forms.CharField(max_length=32, label='Kod')
 
     class Meta:
