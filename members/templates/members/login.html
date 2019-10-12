@@ -1,14 +1,23 @@
 {% extends 'akai_manager_python/unauthenticated.html' %}
 {% block content %}
-    <div class="card w-50">
-        <div class="card-header">
-            <h5>Logowanie AKAI</h5>
-        </div>
-        <div class="card-body text-center">
-            <p>Do aplikacji można zalogować się wyłącznie za pomocą maila z domeny @akai.org.pl. Jeżeli nie masz takiego konta napisz do przewodniczącego.</p>
-            <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
-                Login
-            </a>
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} mx-auto">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="card mx-auto">
+            <div class="card-header">
+                <h5>Logowanie AKAI</h5>
+            </div>
+            <div class="card-body text-center">
+                <p>Do aplikacji można zalogować się wyłącznie za pomocą maila z domeny @akai.org.pl. Jeżeli nie masz takiego konta napisz do przewodniczącego.</p>
+                <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+                    Login
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

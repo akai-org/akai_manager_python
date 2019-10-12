@@ -25,7 +25,8 @@ SECRET_KEY = 'jm_k7#&jv!p7!mlpogj)nab&0mv(cyjn$h571a+6*+zmvlr%hd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+]
 
 # Application definition
 
@@ -62,8 +63,12 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
-    'members.pipeline.get_avatar'
+    'members.auth_pipeline.get_avatar',
 )
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+    'hd': 'akai.org.pl'
+}
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
