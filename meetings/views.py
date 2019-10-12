@@ -1,10 +1,11 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect
 from .forms import MeetingCreateForm
 from .models import Meeting
 from django.contrib import messages
 from django.views.generic import (
-    DetailView
-)
+    DetailView,
+    ListView)
 
 
 def create(request):
@@ -24,3 +25,8 @@ def create(request):
 
 class MeetingDetailView(DetailView):
     model = Meeting
+
+
+class MeetingListView(ListView):
+    model = Meeting
+    ordering = ['-date', '-time']

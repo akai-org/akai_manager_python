@@ -23,7 +23,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('meetings/create', meeting_views.create, name="meeting_create"),
+    path('meetings/create/', meeting_views.create, name="meeting_create"),
+    path('meetings/list/', meeting_views.MeetingListView.as_view(), name="meeting_list"),
     path('meetings/<int:pk>/', meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
     path('', member_views.login, name="login"),
     path('', include('social_django.urls', namespace="social")),

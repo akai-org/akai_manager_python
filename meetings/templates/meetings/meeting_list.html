@@ -1,1 +1,36 @@
 {% extends 'akai_manager_python/authenticated.html' %}
+{% block content %}
+    <h2 class="text-center my-4">Lista spotkań</h2>
+    <div class="meeting-list-conatiner">
+        {% if meeting_list %}
+            <ul class="meeting-list">
+                {% for meeting in meeting_list %}
+                <li class="meeting-list-item">
+                    <a href="{% url 'meeting_view' meeting.pk %}" class="list-group-item list-group-item-action flex-column align-items-start border-0 my-2">
+                       <div class="d-flex w-100 justify-content-between">
+                         <h5 class="mb-1">{{meeting}}</h5>
+                         <small>{{ meeting.date }}</small>
+                       </div>
+                        {% if meeting.agenda %}
+                            <p class="mb-1">{{meeting.agenda}}</p>
+                        {% endif %}
+                        {% if meeting.is_active %}
+                            <small class="text-success">
+                                Trwa teraz!
+                            </small>
+                        {% else %}
+                            <small class="text-danger">
+                                Nieaktywne
+                            </small>
+                        {% endif %}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="alert alert-info text-center">
+                Obecnie nie ma żadnych spotkań na tej liście.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
