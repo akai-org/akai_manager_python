@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
-        <img src="https://akai.org.pl/img/logo.svg" width="30" height="30" class="d-inline-block align-top mr-1">
+        <img src="https://akai.org.pl/img/logo.svg" width="30" height="30" class="d-inline-block align-top mr-1" />
         AKAI Hub
     </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,9 +17,11 @@
       </li>
     </ul>
       <ul class="navbar-nav">
-      <li class="nav-item d-flex align-items-center">
-          <img src="https://lh3.googleusercontent.com/a-/AAuE7mDW14Iv60O_1zZYR7b0dIEsqJIughw9yjFjM8_qtQ=s96-cc" alt="" class="profile-pic d-inline-block align-baseline mr-1">
-        <a class="nav-link active">imie.nazwisko@akai.org.pl</a>
+          <li class="nav-item d-flex align-items-center">
+          {% if user.profile.avatar_url %}
+              <img src="{{user.profile.avatar_url}}" alt="" class="profile-pic d-inline-block align-baseline mr-1">
+          {% endif %}
+        <a class="nav-link active">{{user.email}}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'logout' %}">Wyloguj</a>
