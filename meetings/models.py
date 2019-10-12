@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.crypto import get_random_string
+import random
 
 
 class Meeting(models.Model):
@@ -10,15 +10,16 @@ class Meeting(models.Model):
     notes = models.TextField(null=True, blank=True)
     members = models.ManyToManyField(User)
     is_active = models.BooleanField(default=False)
-    code = models.CharField(max_length=32, null=True)
+    code = models.DecimalField(max_digits=6, decimal_places=0, blank=True, null=True)
 
     def __str__(self):
         return f'Spotkanie {str(self.date)} o {str(self.time)}'
 
     def save(self, *args, **kwargs):
-        self.code = get_random_string(length=32)
-        while Meeting.objects.filter(code=self.code):
-            self.code = get_random_string(length=32)
+        if self.is_active and not self.code:
+            self.code = random.randint(1, 999999)
+            while Meeting.objects.filter(code=self.code):
+                self.code = random.randint(1, 999999)
         super().save(*args, **kwargs)
 
 
