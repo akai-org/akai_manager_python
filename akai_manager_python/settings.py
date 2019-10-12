@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'meetings.apps.MeetingsConfig',
     'members.apps.MembersConfig',
     'crispy_forms',
-    'social_django'
+    'social_django',
+    'qr_code'
 ]
 
 MIDDLEWARE = [
