@@ -2,7 +2,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from .forms import MeetingCreateForm, MeetingsRegisterForm
-from .models import Meeting, Attendance
+from .models import Meeting
 from django.contrib import messages
 from django.views.generic import (
     DetailView,
@@ -30,9 +30,9 @@ def register(request, **kwargs):
     if request.method == 'GET':
         if Meeting.objects.filter(is_active=True, **kwargs).exists() and 'code' in kwargs:
             meeting = Meeting.objects.get(is_active=True, **kwargs)
-            if not Attendance.objects.filter(user=request.user, meeting=meeting).exists():
-                attendance = Attendance.objects.create(user=request.user, meeting=meeting)
-                attendance.save()
+            if not Meeting.objects.filter(members=request.user, pk=meeting.pk).exists():
+                meeting.members.add(request.user)
+                meeting.save()
                 messages.success(request, f'Spotkanie {meeting.date} o godzinie {meeting.time} zanotowało obecność {request.user}!')
                 return redirect('meeting_view', pk=meeting.pk)
             else:
@@ -40,15 +40,12 @@ def register(request, **kwargs):
         else:
             return render(request, 'meetings/meeting_register.html', {'form': form})
     elif request.method == 'POST':
-        print(form)
         if Meeting.objects.filter(is_active=True, code=form.data['code']).exists():
             meeting = Meeting.objects.get(is_active=True, code=form.data['code'])
-            if not Attendance.objects.filter(user=request.user, meeting=meeting).exists():
+            if not Meeting.objects.filter(members=request.user, pk=meeting.pk).exists():
                 if form.is_valid():
-                    attendance = form.save(commit=False)
-                    attendance.user = request.user
-                    attendance.meeting = meeting
-                    attendance.save()
+                    meeting.members.add(request.user)
+                    meeting.save()
                     messages.success(request, f'Spotkanie {meeting.date} o godzinie {meeting.time} zanotowało obecność {request.user}!')
                     return redirect('meeting_view', pk=meeting.pk)
             else:

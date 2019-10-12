@@ -1,5 +1,5 @@
 from django import forms
-from .models import Meeting, Attendance
+from .models import Meeting
 
 
 class MeetingCreateForm(forms.ModelForm):
@@ -25,5 +25,5 @@ class MeetingsRegisterForm(forms.ModelForm):
     code = forms.CharField(max_length=32, label='Kod')
 
     class Meta:
-        model = Attendance
+        model = Meeting
         fields = ['code']
