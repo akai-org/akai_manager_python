@@ -25,7 +25,8 @@ SECRET_KEY = 'jm_k7#&jv!p7!mlpogj)nab&0mv(cyjn$h571a+6*+zmvlr%hd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+]
 
 # Application definition
 
@@ -52,6 +53,23 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'members.auth_pipeline.get_avatar',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+    'hd': 'akai.org.pl'
+}
+
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend'
@@ -60,8 +78,9 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '449789827359-scpla86ifb36rnch0enp3l9vvbue2qf9.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '4xJPfMB4tZFJLW5n7GJBhJ57'
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 
-LOGIN_URL = '/auth/login/google-oauth2/'
+LOGIN_URL = '/auth/login/google-oauth2'
 
 LOGIN_REDIRECT_URI = '/'
 LOGOUT_REDIRECT_URI = '/'

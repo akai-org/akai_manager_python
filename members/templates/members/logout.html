@@ -1,0 +1,13 @@
+{% extends 'akai_manager_python/unauthenticated.html' %}
+{% block content %}
+    <div class="card w-50">
+        <div class="card-header text-center">
+            <h3>Wylogwoano pomyślnie!</h3>
+        </div>
+        <div class="card-body text-center">
+            <a class="btn btn-primary" href="{% url 'login' %}">
+                Przejdź do logowania
+            </a>
+        </div>
+    </div>
+{% endblock %}

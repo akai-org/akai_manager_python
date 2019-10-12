@@ -17,15 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from meetings import views as meeting_views
 from members import views as member_views
-from django.contrib.auth.views import auth_logout
-from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('meetings/create', meeting_views.create, name="meeting_create"),
+    path('meetings/create/', meeting_views.create, name="meeting_create"),
     path('meetings/<int:pk>/', meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
+    path('meetings/', meeting_views.MeetingListView.as_view(), name="meeting_list"),
     path('', member_views.login, name="login"),
     path('', include('social_django.urls', namespace="social")),
-    path('logout/', auth_logout, {'next_page': settings.LOGOUT_REDIRECT_URI}, name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='members/logout.html'), name='logout'),
 ]
+
