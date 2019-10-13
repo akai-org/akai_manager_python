@@ -27,16 +27,21 @@ def create(request):
 
 def register(request, **kwargs):
     form = MeetingsRegisterForm(request.POST or None)
+    codeErrorMsg = 'Błędny kod, spróbuj ponownie!'
     if request.method == 'GET':
-        if Meeting.objects.filter(is_active=True, **kwargs).exists() and 'code' in kwargs:
-            meeting = Meeting.objects.get(is_active=True, **kwargs)
-            if not Meeting.objects.filter(members=request.user, pk=meeting.pk).exists():
-                meeting.members.add(request.user)
-                meeting.save()
-                messages.success(request, f'Spotkanie {meeting.date} o godzinie {meeting.time} zanotowało obecność {request.user}!')
-                return redirect('meeting_view', pk=meeting.pk)
+        if 'code' in kwargs:
+            if Meeting.objects.filter(is_active=True, **kwargs).exists():
+                meeting = Meeting.objects.get(is_active=True, **kwargs)
+                if not Meeting.objects.filter(members=request.user, pk=meeting.pk).exists():
+                    meeting.members.add(request.user)
+                    meeting.save()
+                    messages.success(request, f'Spotkanie {meeting.date} o godzinie {meeting.time} zanotowało obecność {request.user}!')
+                    return redirect('meeting_view', pk=meeting.pk)
+                else:
+                    return redirect('meeting_view', pk=meeting.pk)
             else:
-                return redirect('meeting_view', pk=meeting.pk)
+                messages.warning(request, codeErrorMsg)
+                return render(request, 'meetings/meeting_register.html', {'form': form})
         else:
             return render(request, 'meetings/meeting_register.html', {'form': form})
     elif request.method == 'POST':
@@ -51,6 +56,8 @@ def register(request, **kwargs):
             else:
                 return redirect('meeting_view', pk=meeting.pk)
         else:
+            messages.warning(request, codeErrorMsg)
+            print(messages)
             return render(request, 'meetings/meeting_register.html', {'form': form})
 
 

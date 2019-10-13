@@ -1,6 +1,19 @@
 {% extends 'akai_manager_python/authenticated.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                <font color="#8b0000">
+                {% endif %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                </font>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">

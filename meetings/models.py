@@ -20,6 +20,8 @@ class Meeting(models.Model):
             self.code = random.randint(1, 999999)
             while Meeting.objects.filter(code=self.code):
                 self.code = random.randint(1, 999999)
+        elif not self.is_active and self.code:
+            self.code = None
         super().save(*args, **kwargs)
 
 
