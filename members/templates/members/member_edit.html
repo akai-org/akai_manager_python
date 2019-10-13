@@ -1,0 +1,17 @@
+{% extends 'akai_manager_python/authenticated.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h2 class="text-center my-4">Edycja użytkownika {{member.username}}</h2>
+    <div class="member-edit-container">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="form-group">
+                <button class="btn btn-outline-info float-right" type="submit">
+                    Zapisz
+                </button>
+                <a class="btn btn-light float-right mr-2" href="{% url 'member_list' %}">Powrót</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

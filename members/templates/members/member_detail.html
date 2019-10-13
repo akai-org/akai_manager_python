@@ -1,0 +1,17 @@
+{% extends 'akai_manager_python/authenticated.html' %}
+{% block content %}
+    <h2 class="text-center my-4">Dane użytkownika "{{member.username}}"</h2>
+    <hr />
+    <div class="member-detail-container">
+        {% if member.profile.avatar_url %}
+            <div class="float-left member-detail-avatar">
+                <a href="{{ member.profile.avatar_url }}"><img src="{{ member.profile.avatar_url }}" alt="Avatar {{member.username}}" /></a>
+            </div>
+        {% endif %}
+        <h3>Nazwa użytkownika: {{member.username}}</h3>
+        <p>Imie i nazwisko: {{member.first_name|default:'==='}} {{member.last_name|default:'==='}}</p>
+        <p>Adres e-mail: {{member.email}}</p>
+
+        <a class="btn btn-light float-right" href="{%url 'member_list'%}">Powrót</a>
+    </div>
+{% endblock %}
