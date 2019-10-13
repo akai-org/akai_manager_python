@@ -13,7 +13,7 @@ class Meeting(models.Model):
     code = models.DecimalField(max_digits=6, decimal_places=0, blank=True, null=True)
 
     def __str__(self):
-        return f'Spotkanie {str(self.date)} o {str(self.time)}'
+        return f'Spotkanie {str(self.date)} o godzinie {str(self.time)}'
 
     def save(self, *args, **kwargs):
         if self.is_active and not self.code:

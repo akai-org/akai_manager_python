@@ -16,9 +16,7 @@ def create(request):
 
         if form.is_valid():
             meeting = form.save()
-            date = form.cleaned_data.get('date')
-            time = form.cleaned_data.get('time')
-            messages.success(request, f'Spotkanie {date} o godzinie {time} zostało utworzone pomyślnie!')
+            messages.success(request, f'{meeting.__str__()} zostało utworzone pomyślnie!')
             return redirect('meeting_view', pk=meeting.pk)
     else:
         form = MeetingCreateForm()
@@ -35,7 +33,7 @@ def register(request, **kwargs):
                 if not Meeting.objects.filter(members=request.user, pk=meeting.pk).exists():
                     meeting.members.add(request.user)
                     meeting.save()
-                    messages.success(request, f'Spotkanie {meeting.date} o godzinie {meeting.time} zanotowało obecność {request.user}!')
+                    messages.success(request, f'{meeting.__str__()} zanotowało obecność {request.user}!')
                     return redirect('meeting_view', pk=meeting.pk)
                 else:
                     return redirect('meeting_view', pk=meeting.pk)
@@ -51,7 +49,7 @@ def register(request, **kwargs):
                 if form.is_valid():
                     meeting.members.add(request.user)
                     meeting.save()
-                    messages.success(request, f'Spotkanie {meeting.date} o godzinie {meeting.time} zanotowało obecność {request.user}!')
+                    messages.success(request, f'{meeting.__str__()} zanotowało obecność {request.user}!')
                     return redirect('meeting_view', pk=meeting.pk)
             else:
                 return redirect('meeting_view', pk=meeting.pk)
