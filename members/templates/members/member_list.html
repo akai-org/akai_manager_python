@@ -1,1 +1,44 @@
 {% extends 'akai_manager_python/authenticated.html' %}
+{% block title %}Lista członków | {% endblock %}
+{% block content %}
+    <h2 class="text-center my-4">Lista członków</h2>
+    <div class="member-list-container">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Imię i nazwisko</th>
+                    <th>Nazwa użytkownika</th>
+                    <th>Email</th>
+                    <th></th>
+                    {% if user.is_superuser %}
+                    <th></th>
+                    <th></th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in member_list %}
+                    <tr>
+                        <th scope="row">{{member.id}}</th>
+                        <td>
+                            {% if member.first_name and member.last_name %}
+                                {{member.first_name}} {{member.last_name}}
+                            {% else %}
+                                =======
+                            {% endif %}
+                        </td>
+                        <td>{{member.username}}</td>
+                        <td>{{member.email}}</td>
+                        <td><a href="{% url 'member_detail' member.id %}">Szczegóły</a></td>
+                        {% if user.is_superuser %}
+                            <td><a href="{% url 'member_edit' member.id %}" class="btn btn-success btn-sm">Edit</a></td>
+                            <td><a href="{% url 'member_delete' member.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

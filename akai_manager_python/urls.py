@@ -22,13 +22,26 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('meetings/create/', meeting_views.create, name="meeting_create"),
+<<<<<<< HEAD
     path('meetings/<int:pk>/', meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
     path('meetings/register/<int:code>/', meeting_views.register, name="meeting_register_code"),
     path('meetings/register/', meeting_views.register, name="meeting_register"),
+=======
+    path('meetings/<int:pk>/',
+         meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
+>>>>>>> 884b420f39db509e498b9e5c7d5a94e372f4f0d8
     path('meetings/', meeting_views.MeetingListView.as_view(), name="meeting_list"),
+
+    path('members/', member_views.IndexView.as_view(), name="member_list"),
+    path('members/<int:pk>/', member_views.DetailView.as_view(), name="member_detail"),
+    path('members/<int:pk>/edit',
+         member_views.EditView.as_view(), name="member_edit"),
+    path('members/<int:pk>/delete',
+         member_views.DeleteView.as_view(), name="member_delete"),
+
     path('', member_views.login, name="login"),
     path('', include('social_django.urls', namespace="social")),
     path('logout/', auth_views.LogoutView.as_view(template_name='members/logout.html'), name='logout'),
 ]
-
