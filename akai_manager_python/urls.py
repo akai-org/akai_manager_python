@@ -30,8 +30,6 @@ urlpatterns = [
 
     path('members/', member_views.IndexView.as_view(), name="member_list"),
     path('members/<int:pk>/', member_views.DetailView.as_view(), name="member_detail"),
-    path('members/<int:pk>/edit',
-         member_views.EditView.as_view(), name="member_edit"),
     path('members/<int:pk>/delete',
          member_views.DeleteView.as_view(), name="member_delete"),
 

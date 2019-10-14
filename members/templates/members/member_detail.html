@@ -5,7 +5,9 @@
     <div class="member-detail-container">
         {% if member.profile.avatar_url %}
             <div class="float-left member-detail-avatar">
-                <a href="{{ member.profile.avatar_url }}"><img src="{{ member.profile.avatar_url }}" alt="Avatar {{member.username}}" /></a>
+                <a href="{{ member.profile.avatar_url }}">
+                    <img src="{{ member.profile.avatar_url }}" alt="Avatar {{member.username}}" />
+                </a>
             </div>
         {% endif %}
         <h3>Nazwa użytkownika: {{member.username}}</h3>
