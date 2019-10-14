@@ -26,6 +26,8 @@ def create(request):
 def register(request, **kwargs):
     form = MeetingsRegisterForm(request.POST or None)
     codeErrorMsg = 'Błędny kod, spróbuj ponownie!'
+    addedToList = 'Zostałeś dodany do listy obecności!'
+    existingOnList = 'Już jesteś na liście, nie musisz dopisywać się ponownie :)'
     if request.method == 'GET':
         if 'code' in kwargs:
             if Meeting.objects.filter(is_active=True, **kwargs).exists():
@@ -34,8 +36,10 @@ def register(request, **kwargs):
                     meeting.members.add(request.user)
                     meeting.save()
                     messages.success(request, f'{meeting.__str__()} zanotowało obecność {request.user}!')
+                    messages.info(request, addedToList)
                     return redirect('meeting_view', pk=meeting.pk)
                 else:
+                    messages.info(request, existingOnList)
                     return redirect('meeting_view', pk=meeting.pk)
             else:
                 messages.warning(request, codeErrorMsg)
@@ -50,8 +54,10 @@ def register(request, **kwargs):
                     meeting.members.add(request.user)
                     meeting.save()
                     messages.success(request, f'{meeting.__str__()} zanotowało obecność {request.user}!')
+                    messages.info(request, addedToList)
                     return redirect('meeting_view', pk=meeting.pk)
             else:
+                messages.info(request, existingOnList)
                 return redirect('meeting_view', pk=meeting.pk)
         else:
             messages.warning(request, codeErrorMsg)

@@ -24,14 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('meetings/create/', meeting_views.create, name="meeting_create"),
-<<<<<<< HEAD
     path('meetings/<int:pk>/', meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
     path('meetings/register/<int:code>/', meeting_views.register, name="meeting_register_code"),
     path('meetings/register/', meeting_views.register, name="meeting_register"),
-=======
-    path('meetings/<int:pk>/',
-         meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
->>>>>>> 884b420f39db509e498b9e5c7d5a94e372f4f0d8
     path('meetings/', meeting_views.MeetingListView.as_view(), name="meeting_list"),
 
     path('members/', member_views.IndexView.as_view(), name="member_list"),
