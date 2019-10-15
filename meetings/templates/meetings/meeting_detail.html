@@ -9,10 +9,10 @@
             {% endfor %}
         </ul>
     {% endif %}
-    {% if user.is_superuser %}
     <div class="row">
         <legend class="mt-5 text-center">Spotkanie {{ meeting.date }} o godzinie {{ meeting.time }}</legend>
     </div>
+    {% if user.is_superuser %}
     <div class="row">
         <div class="col-sm-3">
             {% if meeting.members %}
