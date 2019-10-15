@@ -69,6 +69,7 @@ class MeetingDetailView(LoginRequiredMixin, DetailView):
     model = Meeting
 
 
+
 class MeetingListView(LoginRequiredMixin, ListView):
     model = Meeting
     ordering = ['-date', '-time']

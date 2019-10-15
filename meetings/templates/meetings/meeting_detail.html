@@ -9,5 +9,38 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <legend class="mt-5 text-center">Spotkanie {{ meeting.date }} o godzinie {{ meeting.time }}</legend>
+    {% if user.is_superuser %}
+    <div class="row">
+        <legend class="mt-5 text-center">Spotkanie {{ meeting.date }} o godzinie {{ meeting.time }}</legend>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            {% if meeting.members %}
+                <div>
+                    <h6 class="mt-2 text-center">Obecni</h6>
+                </div>
+                <ul class="mt-1 list-group">
+                {% for each in meeting.members.all %}
+                    <li class="list-group-item text-sm-center list-group-item-light text-info text-truncate">
+                        {% if each.get_full_name|length > 0 %}{{ each.get_full_name }}{% else %}{{ user.get_username }}{% endif %}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="col-sm-{% if user.is_superuser %}9{% else %}12{% endif %}">
+            <div>
+                <h6 class="mt-2 text-left">Agenda</h6>
+            </div>
+            <div>
+                <pre class="mt-1 mb-1">{{meeting.agenda}}</pre>
+            </div>
+            <div>
+                <h6 class="mt-2 text-left">Notatki</h6>
+            </div>
+            <div>
+                <p class="mt-3 mb-1">{{meeting.notes}}</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
