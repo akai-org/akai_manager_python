@@ -10,16 +10,16 @@ class Meeting(models.Model):
     notes = models.TextField(null=True, blank=True)
     members = models.ManyToManyField(User)
     is_active = models.BooleanField(default=False)
-    code = models.DecimalField(max_digits=6, decimal_places=0, blank=True, null=True)
+    code = models.CharField(max_length=6, blank=True, null=True)
 
     def __str__(self):
         return f'Spotkanie {str(self.date)} o godzinie {str(self.time)}'
 
     def save(self, *args, **kwargs):
         if self.is_active and not self.code:
-            self.code = random.randint(1, 999999)
+            self.code = f"{random.randint(1, 999999):06d}"
             while Meeting.objects.filter(code=self.code):
-                self.code = random.randint(1, 999999)
+                self.code = f"{random.randint(1, 999999):06d}"
         elif not self.is_active and self.code:
             self.code = None
         super().save(*args, **kwargs)

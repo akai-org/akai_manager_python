@@ -68,6 +68,9 @@ def register(request, **kwargs):
 class MeetingDetailView(LoginRequiredMixin, DetailView):
     model = Meeting
 
+    def __init__(self):
+        self.model.url = "sss"
+        super().__init__()
 
 
 class MeetingListView(LoginRequiredMixin, ListView):
