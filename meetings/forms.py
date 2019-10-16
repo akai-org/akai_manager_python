@@ -27,3 +27,5 @@ class MeetingsRegisterForm(forms.ModelForm):
     class Meta:
         model = Meeting
         fields = ['code']
+
+

@@ -61,16 +61,25 @@ def register(request, **kwargs):
                 return redirect('meeting_view', pk=meeting.pk)
         else:
             messages.warning(request, codeErrorMsg)
-            print(messages)
             return render(request, 'meetings/meeting_register.html', {'form': form})
+
+
+def activate(request, **kwargs):
+    if request.method == 'POST':
+        meeting = Meeting.objects.get(pk=kwargs['pk'])
+        if meeting.is_active:
+            meeting.is_active = False
+        else:
+            meeting.is_active = True
+        meeting.save()
+    return redirect('meeting_view', pk=meeting.pk)
 
 
 class MeetingDetailView(LoginRequiredMixin, DetailView):
     model = Meeting
 
-    def __init__(self):
-        self.model.url = "sss"
-        super().__init__()
+    def post(self, request, *args, **kwargs):
+        return redirect('meeting_view', **kwargs)
 
 
 class MeetingListView(LoginRequiredMixin, ListView):

@@ -18,7 +18,7 @@ from django.urls import path, include
 from meetings import views as meeting_views
 from members import views as member_views
 from django.contrib.auth import views as auth_views
-from django.conf.urls import include, url
+from django.conf.urls import include
 from qr_code import urls as qr_code_urls
 
 
@@ -26,12 +26,13 @@ from qr_code import urls as qr_code_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('meetings/', meeting_views.MeetingListView.as_view(), name="meeting_list"),
     path('meetings/create/', meeting_views.create, name="meeting_create"),
     path('meetings/<int:pk>/', meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
-    path('meetings/register/<str:code>/', meeting_views.register, name="meeting_register_code"),
+    path('meetings/activate/<int:pk>/', meeting_views.activate, name="meeting_activate"),
     path('meetings/register/', meeting_views.register, name="meeting_register"),
     path('meetings/register/', include(qr_code_urls, namespace='qr_code')),
-    path('meetings/', meeting_views.MeetingListView.as_view(), name="meeting_list"),
+    path('meetings/register/<str:code>/', meeting_views.register, name="meeting_register_code"),
 
     path('members/', member_views.IndexView.as_view(), name="member_list"),
     path('members/<int:pk>/', member_views.DetailView.as_view(), name="member_detail"),
