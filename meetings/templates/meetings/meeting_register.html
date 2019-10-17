@@ -1,1 +1,29 @@
-{% extends 'authenticated.html' %}
+{% extends 'akai_manager_python/authenticated.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                <li class="text-danger">{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom form-title pt-3">Lista obecności</legend>
+            <div class="row">
+                <div class="form-group col-md-6 mb-0">
+                    {{ form.code|as_crispy_field }}
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">
+                Podpisz listę obecności
+            </button>
+        </div>
+    </form>
+{% endblock %}

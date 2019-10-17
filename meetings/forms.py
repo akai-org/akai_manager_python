@@ -14,3 +14,23 @@ class MeetingCreateForm(forms.ModelForm):
             'notes': 'Notatki',
             'is_active': 'Aktywne'
         }
+
+
+class MeetingsRegisterForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'code' in kwargs:
+            self.fields['code'] = kwargs['code']
+
+    code = forms.CharField(max_length=32, label='Kod')
+
+    class Meta:
+        model = Meeting
+        fields = ['code']
+
+
+class MeetingDetailForm(forms.ModelForm):
+    class Meta:
+        model = Meeting
+        fields = ['agenda', 'notes']
+        labels = {'agenda': 'Agenda', 'notes': 'Notatki'}

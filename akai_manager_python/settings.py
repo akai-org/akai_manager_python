@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'meetings.apps.MeetingsConfig',
     'members.apps.MembersConfig',
     'crispy_forms',
-    'social_django'
+    'social_django',
+    'qr_code'
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '449789827359-scpla86ifb36rnch0enp3l9vvbue2qf9.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '4xJPfMB4tZFJLW5n7GJBhJ57'
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+
 
 LOGIN_URL = '/auth/login/google-oauth2'
 
