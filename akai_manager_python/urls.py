@@ -21,8 +21,6 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls import include
 from qr_code import urls as qr_code_urls
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 

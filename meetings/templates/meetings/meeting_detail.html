@@ -28,13 +28,13 @@
                 </div>
                 <form method="POST" class="text-center" action="{% url 'meeting_activate' meeting.pk %}">{% csrf_token %}
                 <button class="btn btn-outline-info" type="submit">
-                    <p>Zakończ</p><p>Spotkanie</p>
+                    Zakończ<br>Spotkanie
                 </button>
                 </form>
             {% else %}
                 <form method="POST" class="text-center" action="{% url 'meeting_activate' meeting.pk %}">{% csrf_token %}
                 <button class="btn btn-outline-info text-center" type="submit">
-                    <p>Rozpocznij</p><p>Spotkanie</p>
+                    Rozpocznij<br>Spotkanie
                 </button>
                 </form>
             {% endif %}

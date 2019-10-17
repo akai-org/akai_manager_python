@@ -65,13 +65,12 @@ def register(request, **kwargs):
 
 
 def activate(request, **kwargs):
-    if request.method == 'POST':
-        meeting = Meeting.objects.get(pk=kwargs['pk'])
-        if meeting.is_active:
-            meeting.is_active = False
-        else:
-            meeting.is_active = True
-        meeting.save()
+    meeting = Meeting.objects.get(pk=kwargs['pk'])
+    if meeting.is_active:
+        meeting.is_active = False
+    else:
+        meeting.is_active = True
+    meeting.save()
     return redirect('meeting_view', pk=meeting.pk)
 
 

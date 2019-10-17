@@ -29,3 +29,8 @@ class MeetingsRegisterForm(forms.ModelForm):
         fields = ['code']
 
 
+class MeetingDetailForm(forms.ModelForm):
+    class Meta:
+        model = Meeting
+        fields = ['agenda', 'notes']
+        labels = {'agenda': 'Agenda', 'notes': 'Notatki'}
