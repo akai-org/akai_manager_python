@@ -14,27 +14,27 @@
     </div>
     <div class="mt-3 row">
     {% if user.is_superuser %}
-        <div class="col-sm-3">
+        <div class="col-12">
             {% if meeting.is_active %}
-                <div class="mt-2 text-center">
+                <div class="mt-2 text-center meeting-detail-qr col-sm-4 offset-sm-4">
                     {% url 'meeting_register_code' meeting.code as dir %}
                     {% with request.scheme|add:"://"|add:request.META.HTTP_HOST|add:dir as directory %}
                         {% load qr_code %}
                         <a href={{ directory }} ><img src="{% qr_url_from_text directory size="T" %}" alt="hello"></a>
                     {% endwith %}
                 </div>
-                <div class="text-center">
+                <div class="text-center ">
                     <b class="text-center">{{ meeting.code }}</b>
                 </div>
                 <form method="POST" class="text-center" action="{% url 'meeting_activate' meeting.pk %}">{% csrf_token %}
                 <button class="btn btn-outline-info" type="submit">
-                    Zakończ<br>Spotkanie
+                    Zakończ spotkanie
                 </button>
                 </form>
             {% else %}
                 <form method="POST" class="text-center" action="{% url 'meeting_activate' meeting.pk %}">{% csrf_token %}
-                <button class="btn btn-outline-info text-center" type="submit">
-                    Rozpocznij<br>Spotkanie
+                <button class="btn btn-outline-info text-center w-100" type="submit">
+                    Rozpocznij spotkanie
                 </button>
                 </form>
             {% endif %}
@@ -42,19 +42,19 @@
                 <div>
                     <h6 class="mt-5 text-center">Obecni</h6>
                 </div>
-                <ul class="mt-1 list-group">
+                <div class="mt-1 d-flex justify-content-center col-sm-8 offset-sm-2">
                 {% for each in meeting.members.all %}
-                    <li class="list-group-item text-sm-center list-group-item-light text-info text-truncate">
-                        {% if each.get_full_name|length > 0 %}{{ each.get_full_name }}{% else %}{{ user.get_username }}{% endif %}</li>
+                    <div class="list-group-item text-sm-center  text-info text-truncate ml-1 mr-1">
+                        {% if each.get_full_name|length > 0 %}{{ each.get_full_name }}{% else %}{{ user.get_username }}{% endif %}</div>
                 {% endfor %}
-                </ul>
+                </div>
             {% endif %}
         </div>
     {% endif %}
         <div class="col-sm-{% if user.is_superuser %}9{% else %}12{% endif %}">
         {% if meeting.agenda %}
             <div>
-                <h6 class="mt-2 text-left">Agenda</h6>
+                <h5 class="mt-2 text-left">Agenda</h5>
             </div>
             <div>
                 <pre sclass="mt-1 mb-1">{{meeting.agenda}}</pre>
@@ -62,7 +62,7 @@
         {% endif %}
         {% if meeting.notes %}
             <div>
-                <h6 class="mt-2 text-left">Notatki</h6>
+                <h5 class="mt-2 text-left">Notatki</h5>
             </div>
             <div>
                 <p class="mt-3 mb-1">{{meeting.notes}}</p>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="{% url 'meeting_list' %}">
         <img src="https://akai.org.pl/img/logo.svg" width="30" height="30" class="d-inline-block align-top mr-1" />
         AKAI Hub
     </a>
@@ -10,13 +10,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Zgłoś obecność</a>
+        <a class="nav-link" href="{% url 'meeting_list' %}">Zgłoś obecność</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Moje spotkania</a>
+        <a class="nav-link" href="{% url 'member_detail' user.id %}">Moje spotkania</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/members">Lista użytkowników</a>
+        <a class="nav-link" href="{% url 'member_list' %}">Lista użytkowników</a>
       </li>
     </ul>
       <ul class="navbar-nav">
