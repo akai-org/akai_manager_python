@@ -1,4 +1,4 @@
-{% extends 'akai_manager_python/authenticated.html' %}
+{% extends 'authenticated.html' %}
 {% block title %}Lista członków | {% endblock %}
 {% block content %}
     <h2 class="text-center my-4">Lista członków</h2>
@@ -12,7 +12,6 @@
                     <th>Email</th>
                     <th></th>
                     {% if user.is_superuser %}
-                    <th></th>
                     <th></th>
                     {% endif %}
                 </tr>
@@ -32,7 +31,6 @@
                         <td>{{member.email}}</td>
                         <td><a href="{% url 'member_detail' member.id %}">Szczegóły</a></td>
                         {% if user.is_superuser %}
-                            <td><a href="{% url 'member_edit' member.id %}" class="btn btn-success btn-sm">Edit</a></td>
                             <td><a href="{% url 'member_delete' member.id %}" class="btn btn-danger btn-sm">Delete</a></td>
                         {% endif %}
 

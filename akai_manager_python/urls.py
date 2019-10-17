@@ -15,31 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from meetings import views as meeting_views
-from members import views as member_views
+from members.views import login as login_view
 from django.contrib.auth import views as auth_views
 from django.conf.urls import include
-from qr_code import urls as qr_code_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('meetings/', meeting_views.MeetingListView.as_view(), name="meeting_list"),
-    path('meetings/create/', meeting_views.create, name="meeting_create"),
-    path('meetings/<int:pk>/', meeting_views.MeetingDetailView.as_view(), name="meeting_view"),
-    path('meetings/activate/<int:pk>/', meeting_views.activate, name="meeting_activate"),
-    path('meetings/register/', meeting_views.register, name="meeting_register"),
-    path('meetings/register/', include(qr_code_urls, namespace='qr_code')),
-    path('meetings/register/<str:code>/', meeting_views.register, name="meeting_register_code"),
+    path('', login_view, name="login"),
 
-    path('members/', member_views.IndexView.as_view(), name="member_list"),
-    path('members/<int:pk>/', member_views.DetailView.as_view(), name="member_detail"),
-    path('members/<int:pk>/edit',
-         member_views.EditView.as_view(), name="member_edit"),
-    path('members/<int:pk>/delete',
-         member_views.DeleteView.as_view(), name="member_delete"),
-
-    path('', member_views.login, name="login"),
     path('', include('social_django.urls', namespace="social")),
     path('logout/', auth_views.LogoutView.as_view(template_name='members/logout.html'), name='logout'),
+
+    path('members/', include('members.urls')),
+    path('meetings/', include('meetings.urls')),
 ]

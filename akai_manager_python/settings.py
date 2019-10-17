@@ -92,7 +92,9 @@ ROOT_URLCONF = 'akai_manager_python.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'akai_manager_python/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
