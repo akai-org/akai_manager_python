@@ -22,6 +22,7 @@
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Data</th>
                     <th>Czas</th>
                     <th></th>
@@ -31,6 +32,7 @@
             <tbody>
                 {% for meeting in member.meeting_set.all %}
                     <tr>
+                        <td>{{ forloop.counter }}</td>
                         <td>{{ meeting.date }}</td>
                         <td>{{ meeting.time }}</td>
                         <td>{% if meeting.is_active%}
