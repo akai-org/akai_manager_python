@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.MeetingListView.as_view(), name="meeting_list"),
     path('<int:pk>/', views.MeetingDetailView.as_view(), name="meeting_view"),
     path('activate/<int:pk>/', views.activate, name="meeting_activate"),
+    path('update/<int:pk>/', views.update, name="meeting_update"),
     path('register/', views.register, name="meeting_register"),
     path('register/', include(qr_code_urls, namespace='qr_code')),
     path('register/<str:code>/', views.register, name="meeting_register_code"),

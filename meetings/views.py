@@ -65,13 +65,17 @@ def register(request, **kwargs):
 
 
 def activate(request, **kwargs):
-    meeting = Meeting.objects.get(pk=kwargs['pk'])
-    if meeting.is_active:
-        meeting.is_active = False
-    else:
-        meeting.is_active = True
-    meeting.save()
+    if request.user.is_superuser:
+        meeting = Meeting.objects.get(pk=kwargs['pk'])
+        if meeting.is_active:
+            meeting.is_active = False
+        else:
+            meeting.is_active = True
+        meeting.save()
     return redirect('meeting_view', pk=meeting.pk)
+
+def update(request, **kwargs):
+    pass
 
 
 class MeetingDetailView(LoginRequiredMixin, DetailView):
