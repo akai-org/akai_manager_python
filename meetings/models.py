@@ -15,16 +15,6 @@ class Meeting(models.Model):
     def __str__(self):
         return f'Spotkanie {str(self.date)} o godzinie {str(self.time)}'
 
-    def activate(self):
-        self.is_active = True
-        self.save()
-        return ''
-
-    def deactivate(self):
-        self.is_active = False
-        self.save()
-        return ''
-
     def save(self, *args, **kwargs):
         if self.is_active and not self.code:
             self.code = f"{random.randint(1, 999999):06d}"
@@ -33,6 +23,7 @@ class Meeting(models.Model):
         elif not self.is_active and self.code:
             self.code = None
         super().save(*args, **kwargs)
+
 
 
 

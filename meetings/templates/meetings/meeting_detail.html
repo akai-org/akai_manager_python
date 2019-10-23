@@ -11,9 +11,9 @@
         </ul>
     {% endif %}
 
-    <div class="row">
-        <legend class="mt-5 text-center">Spotkanie {{ meeting.date }} o godzinie {{ meeting.time }}</legend>
-    </div>
+        <div class="row">
+            <legend class="mt-5 text-center">Spotkanie {{ meeting.date }} o godzinie {{ meeting.time }}</legend>
+        </div>
 
     {% if user.is_superuser %}
             {% if meeting.is_active %}
@@ -35,11 +35,11 @@
                     </button>
                 </form>
 
-                <form method="POST" class="text-center mt-3" action="{% url 'meeting_update' meeting.pk %}">{% csrf_token %}
-                    <button class="btn btn-outline-info" type="submit">
+                <div class="text-center mt-3" >
+                    <a href="{% url 'meeting_edit' meeting.pk %}"><button class="btn btn-outline-info" type="submit">
                         Edytuj
-                    </button>
-                </form>
+                    </button></a>
+                </div>
 
             {% else %}
 
@@ -53,16 +53,19 @@
 
             {% if meeting.members.exists %}
                     <div class="row">
-                    <div class="mt-5 text-center meeting-detail-qr col-sm-4 offset-sm-4">
-                        <h6>Obecni</h6>
+                        <div class="mt-5 text-center meeting-detail-qr col-sm-4 offset-sm-4">
+                            <h6>Obecni</h6>
+                        </div>
                     </div>
-                    <link rel="stylesheet" href="css/meeting_detail.css">
-                    <div class="mt-1 d-flex overflow-auto" style="">
-                    {% for each in meeting.members.all %}
-                        <div class="list-group-item text-sm-center text-info ml-1 mr-1">
-                            {% if each.get_full_name|length > 0 %}{{ each.get_full_name }}{% else %}{{ user.get_username }}{% endif %}</div>
-                    {% endfor %}
+                <div class="row">
+                    <div class=" list-group-horizontal mt-1 d-flex overflow-auto" style="max-width: available">
+                        {% for each in meeting.members.all %}
+                            <div class="list-group-item text-center text-info ml-1 mr-1">
+                                {% if each.get_full_name|length > 0 %}{{ each.get_full_name }}{% else %}{{ each.get_username }}{% endif %}
+                            </div>
+                        {% endfor %}
                     </div>
+                </div>
 
             {% endif %}
 
@@ -70,39 +73,37 @@
 
 
             {% if user in meeting.members.all %}
-             <div class="row mt-4">
+             <div class="row mt-4 offset-sm-1">
                 <h4 class="text-success">OBECNY</h4>
+             </div>
             {% else %}
-             <div class="row mt-4">
+             <div class="row mt-4 offset-sm-1">
                 <h4 class="text-danger">NIEOBECNY</h4>
                 {% if meeting.is_active %}
                     </div>
                     <div class="row">
                         <a href="{% url 'meeting_register' %}">dopisz sę do listy obecności</a>
                 {% endif %}
-            </div>
+             </div>
             {% endif %}
 
     {% endif %}
-    <div class="row mt-2">
-        <div class="col-12">
+
         {% if meeting.agenda %}
-            <div>
-                <h5 class="mt-2 text-left">Agenda</h5>
-            </div>
-            <div>
-                <pre class="mt-1 mb-1">{{meeting.agenda}}</pre>
-            </div>
+                <div class="row">
+                    <h5 class="mt-2 text-left">Agenda</h5>
+                </div>
+                <div class="row">
+                    <pre class="mt-1 mb-1">{{meeting.agenda}}</pre>
+                </div>
         {% endif %}
         {% if meeting.notes %}
-            <div>
-                <h5 class="mt-2 text-left">Notatki</h5>
-            </div>
-            <div>
-                <p class="mt-3 mb-1">{{meeting.notes}}</p>
-            </div>
+                <div class="row">
+                    <h5 class="mt-2 text-left">Notatki</h5>
+                </div>
+                <div class="row">
+                    <p class="mt-3 mb-1">{{meeting.notes}}</p>
+                </div>
         {% endif %}
-        </div>
     </div>
-</div>
 {% endblock %}

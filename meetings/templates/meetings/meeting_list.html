@@ -24,6 +24,16 @@
                             </small>
                         {% endif %}
                     </a>
+                {% if user.is_superuser %}
+                    <div class="list-group-item align-items-start border-0 small mt-0">
+                        <a href="{% url 'meeting_edit' meeting.pk %}" class="text-info">
+                            Edytuj
+                        </a>
+                        <a href="{% url 'meeting_delete' meeting.pk %}" class="text-danger">
+                            Usuń
+                        </a>
+                    </div>
+                {% endif %}
                 </li>
                 {% endfor %}
             </ul>

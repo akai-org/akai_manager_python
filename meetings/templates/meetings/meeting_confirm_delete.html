@@ -1,0 +1,24 @@
+{% extends 'authenticated.html' %}
+{% block content %}
+    <div class="row mt-5 text-center text-danger">
+        <div class="col-sm">
+            <p>Jesteś pewien, że chcesz usunąć "{{ object }}"?</p>
+        </div>
+    </div>
+    <div class="row mt-1 text-center">
+        <div class="col">
+            <div class="btn-group " role="group" aria-label="Basic example">
+                <form method="POST">{% csrf_token %}
+                    <button class="btn btn-outline-danger text-danger" type="submit" value="Confirm">
+                        Usuń spotkanie
+                    </button>
+                </form>
+                <a href="{% url 'meeting_list' %}">
+                    <button class="btn btn-outline-info text-info ml-3" type="submit">
+                        Zabierz mnie stąd
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
