@@ -1,5 +1,5 @@
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .forms import MeetingCreateForm, MeetingsRegisterForm
@@ -112,9 +112,13 @@ def edit(request, **kwargs):
             return render(request, 'meetings/meeting_edit.html', {'form': form, 'pk': kwargs['pk']})
 
 
-class MeetingDeleteView(LoginRequiredMixin, DeleteView):
+class MeetingDeleteView(PermissionRequiredMixin, DeleteView):
     model = Meeting
     success_url = reverse_lazy('meeting_list')
+    permission_required = 'self.is_super'
+
+    def is_super(self, *args, **kwargs):
+        return self.request.user.is_superuser()
 
 
 class MeetingDetailView(LoginRequiredMixin, DetailView):
