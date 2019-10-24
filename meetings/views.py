@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from .forms import MeetingCreateForm, MeetingsRegisterForm
 from .models import Meeting
 from django.contrib import messages
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.edit import DeleteView
 from django.views.generic import (
     DetailView,
     ListView)
