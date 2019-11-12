@@ -20,13 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jm_k7#&jv!p7!mlpogj)nab&0mv(cyjn$h571a+6*+zmvlr%hd'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'localhost', 'YouAreInWrongPlace.kei.keint.com'
-]
+ALLOWED_HOSTS = ['localhost', 'YouAreInWrongPlace.kei.keint.com'
+                 ]
 
 # Application definition
 
@@ -76,8 +76,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend'
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '449789827359-scpla86ifb36rnch0enp3l9vvbue2qf9.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '4xJPfMB4tZFJLW5n7GJBhJ57'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 
@@ -115,15 +115,14 @@ WSGI_APPLICATION = 'akai_manager_python.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'akai_manager',
-        'USER': 'manager',
-        'PASSWORD': 'zswe45678ikjnbvcfghji98765432',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '',
     }
 }
-
 
 
 # Password validation
