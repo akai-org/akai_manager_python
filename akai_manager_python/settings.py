@@ -25,7 +25,7 @@ SECRET_KEY = 'jm_k7#&jv!p7!mlpogj)nab&0mv(cyjn$h571a+6*+zmvlr%hd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = [ 'localhost', 'YouAreInWrongPlace.kei.keint.com'
 ]
 
 # Application definition
@@ -117,10 +117,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'akai_manager',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'manager',
+        'PASSWORD': 'zswe45678ikjnbvcfghji98765432',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'PORT': '',
     }
 }
 
@@ -164,6 +164,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/dist')
+    os.path.join(BASE_DIR, 'static/dist'),
+    'static/images',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
