@@ -29,4 +29,6 @@ urlpatterns = [
 
     path('members/', include('members.urls')),
     path('meetings/', include('meetings.urls')),
+
+    path('cms/', include('cms.urls')),
 ]
