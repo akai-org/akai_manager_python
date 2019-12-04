@@ -8,7 +8,7 @@
 4. Install dependencies: `pip install -r requirements.txt`,
 5. Install frontend dependencies: `npm install`
 6. Compile frontend assets: `npm run dev`,
-7. Copy akai_manager_python/.settings.py to akai_manager_python/settings.py and fill missing fields
+7. Copy .settings.py to settings.py and fill missing fields
 8. (optional) Change database settings in settings.py if you want to use different db backend,
 9. Migrate database: `python manage.py migrate`,
 10. To run dev server: `python manage.py runserver`
