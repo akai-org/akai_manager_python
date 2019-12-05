@@ -3,7 +3,8 @@ db.sqlite3
 node_modules/
 static/dist/*
 venv/
-.vscode\
+.vscode
 __pycache__/
 *.pyc
 .vscode\*
+akai_manager_python/settings.py

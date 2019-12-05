@@ -25,7 +25,7 @@ SECRET_KEY = 'jm_k7#&jv!p7!mlpogj)nab&0mv(cyjn$h571a+6*+zmvlr%hd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'localhost', 'YouAreInWrongPlace.kei.keint.com'
+ALLOWED_HOSTS = [
 ]
 
 # Application definition
@@ -37,12 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'meetings.apps.MeetingsConfig',
     'members.apps.MembersConfig',
+    'cms.apps.CmsConfig',
+
     'crispy_forms',
     'social_django',
-    'qr_code'
+    'qr_code',
+    'rest_framework',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,7 +96,7 @@ LOGIN_URL = '/auth/login/google-oauth2'
 LOGIN_REDIRECT_URI = '/'
 LOGOUT_REDIRECT_URI = '/'
 
-ROOT_URLCONF = 'akai_manager_python.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
@@ -107,7 +116,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'akai_manager_python.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
@@ -115,12 +124,12 @@ WSGI_APPLICATION = 'akai_manager_python.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'akai_manager',
-        'USER': 'manager',
-        'PASSWORD': 'zswe45678ikjnbvcfghji98765432',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '',
+        'PORT': '3306',
     }
 }
 
@@ -164,8 +173,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/dist'),
-    'static/images',
+    os.path.join(BASE_DIR, 'static/dist')
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
