@@ -22,10 +22,10 @@ class Article(models.Model):
     content = models.TextField(null=False)
     description = models.TextField(null=True)
 
-    cover_image = models.TextField(null=False)
+    cover_image = models.OneToOneField(Image, related_name="cover_image", on_delete=models.CASCADE)
     author = models.OneToOneField(User, on_delete=models.DO_NOTHING)
 
-    images = models.ManyToManyField(Image)
+    images = models.ManyToManyField(Image, related_name="gallery")
     tags = models.ManyToManyField(Tag)
 
     created_at = models.DateTimeField(auto_now_add=True)
