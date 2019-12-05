@@ -1,7 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{% url 'meeting_list' %}">
+<div id="app">
+<b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar-brand href="{% url 'meeting_list' %}">
         <img src="https://akai.org.pl/img/logo.svg" width="30" height="30" class="d-inline-block align-top mr-1" />
         AKAI Hub
+<<<<<<< Updated upstream:akai_manager_python/templates/includes/navbar.html
     </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -32,3 +34,27 @@
     </ul>
   </div>
 </nav>
+=======
+    </b-navbar-brand>
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+            <b-nav-item href="{% url 'meeting_list' %}">Lista spotkań</b-nav-item>
+            <b-nav-item href="{% url 'member_list' %}">Lista użytkowników</b-nav-item>
+            {% if request.user.is_staff %}
+            <b-nav-item href="{% url 'meeting_create' %}">Utwórz spotkanie</b-nav-item>
+            {% endif %}    
+        </b-navbar-nav>
+        <b-navbar-nav class="ml-auto">  
+            <b-nav-item href="{% url 'member_detail' user.id %}">
+              {% if user.profile.avatar_url %}
+              <img src="{{user.profile.avatar_url}}" alt="" class="profile-pic">            
+              {% endif %}
+              {{user.email}}
+            </b-nav-item>
+            <b-nav-item href="{% url 'logout' %}">Wyloguj</b-nav-item>
+        </b-navbar-nav>
+    </b-collapse>
+</b-navbar>
+</div>
+>>>>>>> Stashed changes:templates/includes/navbar.html

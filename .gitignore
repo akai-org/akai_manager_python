@@ -5,3 +5,11 @@ static/dist/*
 venv/
 .vscode\
 __pycache__/
+dodo
+<<<<<<< Updated upstream
+=======
+*.pyc
+.vscode\*
+akai_manager_python/settings.py
+dodo
+>>>>>>> Stashed changes
