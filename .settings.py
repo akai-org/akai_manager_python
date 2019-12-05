@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'members.apps.MembersConfig',
     'crispy_forms',
     'social_django',
-    'qr_code'
+    'qr_code',
+    'cms'
 ]
 
 MIDDLEWARE = [
