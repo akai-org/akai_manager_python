@@ -37,11 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'meetings.apps.MeetingsConfig',
     'members.apps.MembersConfig',
+    'cms.apps.CmsConfig',
+
     'crispy_forms',
     'social_django',
-    'qr_code'
+    'qr_code',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
