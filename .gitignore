@@ -2,6 +2,7 @@
 db.sqlite3
 node_modules/
 static/dist/*
+static/media/*
 venv/
 .vscode
 __pycache__/

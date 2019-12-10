@@ -15,10 +15,10 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    {% block layout %}{% endblock %}
+    <div id="App">
+        {% block layout %}
+        {% endblock %}
+    </div>
     <script src="{% static "index.js" %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
-    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-    <script>new Vue({ el: '#app' });</script>
 </body>
 </html>
