@@ -4,11 +4,14 @@
   "description": "",
   "private": true,
   "dependencies": {
-    "bootstrap-vue": "^2.0.2",
+    "bootstrap-vue": "^2.1.0",
+    "jquery": "^3.3.1",
     "loadsh": "0.0.4",
+    "select2": "^4.0.3",
     "vue": "^2.6.10",
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "xregexp": "^2.0.0"
   },
   "devDependencies": {
     "css-loader": "^3.2.0",
