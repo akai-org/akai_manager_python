@@ -2,9 +2,11 @@
 db.sqlite3
 node_modules/
 static/dist/*
+static/media/*
 venv/
 .vscode
 __pycache__/
 *.pyc
 .vscode\*
 akai_manager_python/settings.py
+.env

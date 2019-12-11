@@ -12,6 +12,18 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+import environ
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
+
+DEBUG = env('DEBUG')
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env('SECRET_KEY')
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,15 +31,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jm_k7#&jv!p7!mlpogj)nab&0mv(cyjn$h571a+6*+zmvlr%hd'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = [
-]
-
+ALLOWED_HOSTS = ['localhost', 'YouAreInWrongPlace.kei.keint.com'
+                 ]
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,11 +52,6 @@ INSTALLED_APPS = [
     'qr_code',
     'rest_framework',
 ]
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,11 +85,11 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend'
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '449789827359-scpla86ifb36rnch0enp3l9vvbue2qf9.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '4xJPfMB4tZFJLW5n7GJBhJ57'
+# SECURITY WARNING: it's secret ;)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
-
 
 LOGIN_URL = '/auth/login/google-oauth2'
 
@@ -118,23 +118,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'akai_manager',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'NAME': env('DB_NAME', default=''),
+        'USER': env('DB_USER', default='root'),
+        'PASSWORD': env('DB_PASSWORD', default=''),
+        'HOST': env('DB_HOST', default='localhost'),   # Or an IP Address that your DB is hosted on
+        'PORT': env('DB_PORT', default=''),
     }
 }
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -152,8 +148,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -173,6 +167,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/dist')
+    os.path.join(BASE_DIR, 'static/dist'),
+    'static/images',
+    'static/dist/'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'akai_manager_python/static/media')
+

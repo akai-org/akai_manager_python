@@ -58,9 +58,9 @@
                         </div>
                     </div>
                 <div class="row">
-                    <div class=" list-group-horizontal mt-1 d-flex overflow-auto" style="max-width: available">
+                    <div class=" list-group-horizontal mt-1 d-flex overflow-auto flex-wrap justify-content-center" style="min-width: 100%">
                         {% for each in meeting.members.all %}
-                            <div class="list-group-item text-center text-info ml-1 mr-1">
+                            <div class="list-group-item border border-dark border-lg text-center text-info ml-1 mr-1">
                                 {% if each.get_full_name|length > 0 %}{{ each.get_full_name }}{% else %}{{ each.get_username }}{% endif %}
                             </div>
                         {% endfor %}

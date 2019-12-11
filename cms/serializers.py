@@ -6,13 +6,14 @@ from django.contrib.auth.models import User
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name']
+        fields = ['id', 'first_name', 'last_name', 'email']
 
 
 class ArticleSerializer(serializers.HyperlinkedModelSerializer):
     author = AuthorSerializer(read_only=True)
     tags = serializers.StringRelatedField(many=True)
     images = serializers.StringRelatedField(many=True)
+    cover_image = serializers.StringRelatedField()
 
     class Meta:
         model = Article
