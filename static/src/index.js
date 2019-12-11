@@ -1,16 +1,15 @@
 // Django admin dependencies
-import jquery from 'jquery';
-import Select2 from 'select2';
-import XRegexp from 'xregexp';
+// import jquery from 'jquery';
+// import Select2 from 'select2';
+// import XRegexp from 'xregexp';
 
 // Vue dependencies
-import Vue from 'vue/dist/vue.esm';
-import BootstrapVue from 'bootstrap-vue';
+import Vue from 'vue';
+import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.min';
 
 Vue.use(BootstrapVue);
 
-const app = new Vue({
+new Vue({
     el: '#App',
+    delimiters: ['${','}'],
 });
-
-module.exports(app);

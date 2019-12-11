@@ -19,3 +19,4 @@ django-qr-code==1.0.0
 djangorestframework
 mysqlclient==1.4.4
 pillow
+django-environ
