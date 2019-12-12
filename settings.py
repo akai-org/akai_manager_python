@@ -47,11 +47,12 @@ INSTALLED_APPS = [
     'social_django',
     'qr_code',
     'rest_framework',
-    'django_extensions'
+    'django_extensions',
 
+    'core.apps.CoreConfig',
+    'cms.apps.CmsConfig',
     'meetings.apps.MeetingsConfig',
     'members.apps.MembersConfig',
-    'cms.apps.CmsConfig',
 ]
 
 MIDDLEWARE = [
