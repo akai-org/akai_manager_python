@@ -43,14 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'meetings.apps.MeetingsConfig',
-    'members.apps.MembersConfig',
-    'cms.apps.CmsConfig',
-
     'crispy_forms',
     'social_django',
     'qr_code',
     'rest_framework',
+    'django_extensions'
+
+    'meetings.apps.MeetingsConfig',
+    'members.apps.MembersConfig',
+    'cms.apps.CmsConfig',
 ]
 
 MIDDLEWARE = [
@@ -117,6 +118,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ]
+
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
