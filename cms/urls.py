@@ -1,7 +1,8 @@
 from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 from . import views
 
-urlpatterns = [
-    path('api/articles/', views.ArticleListViewSet.as_view({'get': 'list'}), name="article_list"),
-    path('api/articles/<int:key>/', views.ArticleViewSet.as_view({'get': 'list'}), name="article_list"),
-]
+router = DefaultRouter()
+router.register(r'api/articles', views.ArticleViewSet)
+
+urlpatterns = router.urls

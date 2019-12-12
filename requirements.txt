@@ -18,5 +18,6 @@ urllib3==1.25.6
 django-qr-code==1.0.0
 djangorestframework
 mysqlclient==1.4.4
-pillow
-django-environ
+pillow==6.2.1
+django-environ==0.4.5
+django-extensions==2.2.5
