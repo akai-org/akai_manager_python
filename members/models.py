@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar_url = models.CharField(max_length=255)
+    avatar_url = models.CharField(max_length=255, default="https://akai.org.pl/img/logo.svg")
 
     def __str__(self):
         return self.user.email

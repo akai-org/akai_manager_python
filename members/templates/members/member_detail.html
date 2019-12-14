@@ -10,8 +10,7 @@
                 </a>
             </div>
         {% endif %}
-        <h3>Nazwa użytkownika: {{member.username}}</h3>
-        <p>Imie i nazwisko: {{member.first_name|default:'==='}} {{member.last_name|default:'==='}}</p>
+        <h3>Imie i nazwisko: {{member.first_name|default:'==='}} {{member.last_name|default:'==='}}</h3>
         <p>Adres e-mail: {{member.email}}</p>
 
         <a class="btn btn-light float-right" href="{%url 'member_list'%}">Powrót do listy członków</a>
