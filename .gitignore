@@ -4,8 +4,10 @@ node_modules/
 static/dist/*
 static/media/images/*
 venv/
+env/
 .vscode
 __pycache__/
 *.pyc
 .vscode\*
 .env
+
