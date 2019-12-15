@@ -3,18 +3,20 @@
     <h2 class="text-center my-4">Dane użytkownika "{{member.username}}"</h2>
     <hr />
     <div class="member-detail-container">
-        {% if member.profile.avatar_url %}
-            <div class="float-left member-detail-avatar">
-                <a href="{{ member.profile.avatar_url }}">
-                    <img src="{{ member.profile.avatar_url }}" alt="Avatar {{member.username}}" />
-                </a>
+        <div class="row">
+            <div class="col-12" style="height: 150px">
+                {% if member.profile.avatar_url %}
+                <div class="float-left member-detail-avatar">
+                    <a href="{{ member.profile.avatar_url }}">
+                        <img src="{{ member.profile.avatar_url }}" alt="Avatar {{member.username}}" />
+                    </a>
+                </div>
+            {% endif %}
+            <h3>Imie i nazwisko: {{member.first_name|default:'==='}} {{member.last_name|default:'==='}}</h3>
+            <p>Adres e-mail: {{member.email}}</p>
             </div>
-        {% endif %}
-        <h3>Imie i nazwisko: {{member.first_name|default:'==='}} {{member.last_name|default:'==='}}</h3>
-        <p>Adres e-mail: {{member.email}}</p>
-
-        <a class="btn btn-light float-right" href="{%url 'member_list'%}">Powrót do listy członków</a>
-        <br/>
+        </div>
+        <a class="btn btn-light float-right bottom-right" href="{%url 'member_list'%}">Powrót do listy członków</a><br>
         <hr class="mt-4">
         <h3 class="text-center my-4">Uczęszczane spotkania</h3>
         {% if member.meeting_set.all %}
