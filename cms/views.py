@@ -12,7 +12,7 @@ from .models import Article
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = UpdateArticleListSerializer
-    permission_classes = IsAuthenticatedOrReadOnly
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
