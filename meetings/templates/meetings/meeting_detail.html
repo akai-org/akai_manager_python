@@ -15,7 +15,7 @@
             <legend class="mt-5 text-center">Spotkanie {{ meeting.date }} o godzinie {{ meeting.time }}</legend>
         </div>
 
-    {% if user.is_superuser %}
+    {% if perms.meetings.manage_meeting %}
             {% if meeting.is_active %}
                 <div class="mt-2 text-center meeting-detail-qr col-sm-4 offset-sm-4">
                     {% url 'meeting_register_code' meeting.code as dir %}

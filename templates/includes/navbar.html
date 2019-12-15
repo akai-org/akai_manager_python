@@ -8,7 +8,7 @@
       <b-navbar-nav>
           <b-nav-item href="{% url 'meeting_list' %}">Lista spotkań</b-nav-item>
           <b-nav-item href="{% url 'member_list' %}">Lista użytkowników</b-nav-item>
-          {% if request.user.is_staff %}
+          {% if perms.meetings.manage_meeting %}
           <b-nav-item href="{% url 'meeting_create' %}">Utwórz spotkanie</b-nav-item>
           {% endif %}
       </b-navbar-nav>
