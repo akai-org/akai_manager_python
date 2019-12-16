@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Go back!</title>
+    <link rel="stylesheet" type="text/css" href="/notfound.css">
+    <style>
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:700&display=swap');
+body{
+    margin:0;
+    font-family: 'Quicksand',Sans-Serif;
+    font-weight: 700;
+    font-display: swap;
+}
+
+#container{
+    width: 100vw;
+    height: 100vh;
+    align-items:center;
+    display: flex;
+    justify-content: center;
+}
+
+#img{
+    float: left;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+
+    animation-name: hinge;
+    animation-duration: 6.4s;
+    animation-delay: 0.7s;
+}
+
+a{
+    align-items:center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+#main{
+    color: rgb(0, 25, 54);
+    text-align: center;
+    float: left;
+    font-size: 50px;
+    margin-left: 20px;
+}
+
+.orange{
+    color: rgb(250, 162, 27);
+}
+
+#back{
+    font-size: 20px;
+}
+
+@media (max-width: 629px) {
+    #img{
+        display: none;
+    }
+
+    #main{
+        font-size: 30px;
+    }
+    #back{
+        font-size: 15px;
+    }
+}
+
+@media (max-height: 469px) {
+    #img{
+        animation-name: shinge;
+        animation-duration: 6.4s;
+        animation-delay: 0.7s;
+    }
+}
+
+@keyframes hinge {
+    0% {
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+    }
+
+    10%,
+    30% {
+        transform: rotate3d(0, 0, 1, 80deg);
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+    }
+
+    20%,
+    40% {
+        transform: rotate3d(0, 0, 1, 60deg);
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate3d(0, 25vh, 0);
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+        transform: translate3d(0, -3000px, 0);
+    }
+
+     75% {
+        opacity: 1;
+        transform: translate3d(0, 50px, 0);
+    }
+
+    85% {
+        transform: translate3d(0, -20px, 0);
+    }
+
+    95% {
+        transform: translate3d(0, 10px, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes shinge {
+    0% {
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+    }
+
+    10%,
+    30% {
+        transform: rotate3d(0, 0, 1, 80deg);
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+    }
+
+    20%,
+    40% {
+        transform: rotate3d(0, 0, 1, 60deg);
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate3d(0, 50px, 0);
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+        transform: translate3d(0, -3000px, 0);
+    }
+
+     75% {
+        opacity: 1;
+        transform: translate3d(0, 50px, 0);
+    }
+
+    85% {
+        transform: translate3d(0, -20px, 0);
+    }
+
+    95% {
+        transform: translate3d(0, 10px, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+            <div id="img" style="background-image: url({% static images/akai-logo.png %}>
+            </div>
+            <div id="main">
+                ERROR
+                <span class="orange"> 404</span>
+                <br>
+                PAGE NOT FOUND
+                <br>
+                <a href="https://akai.org.pl/">
+                    <span id="back" class="orange">CLICK HERE</span>
+                </a>
+            </div>
+            <div style="clear:both;"></div>
+    </div>
+</body>
+</html>
