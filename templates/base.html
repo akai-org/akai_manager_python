@@ -22,6 +22,10 @@
         {% block layout %}
         {% endblock %}
     </div>
-    <script src="{% static "index.js" %}"></script>
+    {% block custom_js %}
+        <script src="{% static "index.js" %}"></script>
+    {% endblock %}
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>
