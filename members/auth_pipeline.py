@@ -18,3 +18,7 @@ def get_name(backend, strategy, details, response, user=None, *args, **kwargs):
         user.last_name = ' '.join(name[1:])
     user.save()
 
+
+def set_default_class(backend, strategy, details, response, user=None, *args, **kwargs):
+    user.groups.set(name="member")
+

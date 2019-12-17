@@ -7,7 +7,7 @@
             {% if member.profile.avatar_url %}
                 <div class="col-12 col-sm-3 col-md-2 col-lg-2 mr-lg-0 member-detail-avatar text-center">
                     <a href="{{ member.profile.avatar_url|default:"https://akai.org.pl/img/logo.svg" }}">
-                        <img  src="{{ member.profile.avatar_url| default:"https://akai.org.pl/img/logo.svg" }}" alt="Avatar {{member.username}}" class="bg-dark"/>
+                        <img  src="{{ member.profile.avatar_url| default:"https://akai.org.pl/img/logo.svg" }}" alt="Avatar {{member.username}}" class="bg-dark p-2"/>
                     </a>
                 </div>
             {% endif %}
