@@ -12,5 +12,6 @@
 8. (optional) Change database settings in settings.py if you want to use different db backend,
 9. Migrate database: `python manage.py migrate`,
 10. To run dev server: `python manage.py runserver`
+11. Import permissions: `python manage.py import_permissions`
 
 ### OR USE update.sh SCRIPT
