@@ -5,13 +5,13 @@
     <div class="member-detail-container">
         <div class="row">
             {% if member.profile.avatar_url %}
-                <div class="col-12 col-sm-3 member-detail-avatar text-center">
-                    <a href="{{ member.profile.avatar_url }}">
-                        <img  src="{{ member.profile.avatar_url }}" alt="Avatar {{member.username}}" class="bg-dark"/>
+                <div class="col-12 col-sm-3 col-md-2 col-lg-2 mr-lg-0 member-detail-avatar text-center">
+                    <a href="{{ member.profile.avatar_url|default:"https://akai.org.pl/img/logo.svg" }}">
+                        <img  src="{{ member.profile.avatar_url| default:"https://akai.org.pl/img/logo.svg" }}" alt="Avatar {{member.username}}" class="bg-dark"/>
                     </a>
                 </div>
             {% endif %}
-            <div class="col-sm-7 col-12 mt-1">
+            <div class="col-sm-8 col-md-9 col-lg-10 col-12 mt-1">
                 <h5 class="mb-0">Imie i nazwisko:</h5>
                 <h3>{{member.first_name|default:'==='}} {{member.last_name|default:'==='}}</h3>
                 <p>Adres e-mail: <br> {{member.email}}</p>

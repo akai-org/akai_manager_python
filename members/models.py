@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar_url = models.CharField(max_length=255, default="https://akai.org.pl/img/logo.svg")
+    avatar_url = models.CharField(max_length=255)
 
     def __str__(self):
         return self.user.email
@@ -15,7 +15,7 @@ class Profile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        profile = Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
