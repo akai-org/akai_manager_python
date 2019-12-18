@@ -1,4 +1,4 @@
-git pull
+virtualenv venv
 ./venv/bin/pip install -r requirements.txt
 ./venv/bin/python manage.py migrate
 npm install
