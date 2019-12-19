@@ -15,3 +15,4 @@
 11. Import permissions: `python manage.py import_permissions`
 
 ### OR USE update.sh SCRIPT
+
