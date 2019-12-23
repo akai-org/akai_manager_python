@@ -1,0 +1,16 @@
+{% extends 'authenticated.html' %}
+{% load staticfiles %}
+{% block title %}CMS | {% endblock %}
+    {% block custom_css %}
+        <link rel="stylesheet" href="{% static "cms.css" %}">
+    {% endblock %}
+
+{% block content %}
+    {% include 'cms/includes/sidenav.html' %}
+    <div class="base-content container-fluid">
+        {% block cms %}{% endblock %}
+    </div>
+{% endblock %}
+{% block custom_js %}
+    <script src="{% static "cms.js" %}"></script>
+{% endblock %}

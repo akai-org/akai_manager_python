@@ -11,6 +11,10 @@
           {% if perms.meetings.manage_meeting %}
           <b-nav-item href="{% url 'meeting_create' %}">Utwórz spotkanie</b-nav-item>
           {% endif %}
+          {% if perms.cms.manage_article %}
+          <b-nav-item href="{% url 'article_list' %}">CMS</b-nav-item>
+          {% endif %}
+
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
           <b-nav-item href="{% url 'member_detail' user.id %}">

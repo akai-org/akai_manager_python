@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article
+from .models import Article, Tag
 from django.contrib.auth.models import User
 from html import unescape
 
@@ -8,6 +8,12 @@ class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name', 'email']
+
+
+class TagListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ['name']
 
 
 class ArticleSerializer(serializers.HyperlinkedModelSerializer):
@@ -19,7 +25,7 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Article
-        fields = ['title', 'content', 'description', 'cover_image', 'author', 'tags', 'images', 'created_at',
+        fields = ['title', 'content', 'description', 'cover_image', 'active', 'author', 'tags', 'images', 'created_at',
                   'updated_at']
 
     def create(self, validated_data):
@@ -53,5 +59,4 @@ class ArticleListSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Article
-        fields = ['title', 'description', 'cover_image', 'author', 'created_at', 'updated_at']
-
+        fields = ['id', 'title', 'description', 'cover_image', 'author', 'created_at', 'updated_at', 'active']

@@ -30,6 +30,8 @@ class Article(models.Model):
     content = models.TextField(null=False)
     description = models.TextField(null=True)
 
+    active = models.BooleanField(default=True)
+
     cover_image = models.OneToOneField(Image, related_name="cover_image", on_delete=models.CASCADE, null=True)
     author = models.OneToOneField(User, on_delete=models.DO_NOTHING)
 
