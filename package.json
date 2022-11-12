@@ -11,7 +11,7 @@
     "serialize-javascript": "^2.1.1",
     "vue": "^2.6.10",
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9",
+    "webpack-cli": "^3.3.12",
     "xregexp": "^2.0.0"
   },
   "devDependencies": {
